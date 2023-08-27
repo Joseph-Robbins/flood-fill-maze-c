@@ -64,7 +64,6 @@ void printScoredMaze(char charMaze[33][66], struct cell maze[16][16]);
 void printScoredAndVisitedMazes(char charMaze[33][66], struct cell maze[16][16]);
 void initCells(char charMaze[33][66], struct cell* maze);
 
-
 void main()
 {
     // printf("\e[31mEllo m8!\r\n");
@@ -92,7 +91,7 @@ void main()
         readCharMaze(filePointer, &charMaze);
         printScoredMaze(charMaze, maze);
 
-        for (int r = 0; r < 4; r++) //Set number of runs to 3
+        for (int r = 0; r < 4; r++) //Set number of runs to 4
         {
             unsigned int cellsVisited = 0;
 
@@ -112,14 +111,17 @@ void main()
             {
                 //Check if current cell is a goal cell
                 if (maze[robot1.yPos][robot1.xPos].score == 0)
+                {
+                    maze[robot1.yPos][robot1.xPos].visited = true;
                     break;
+                }
 
                 maze[robot1.yPos][robot1.xPos].walls = readSensors(charMaze, robot1); //Read sensors to gather information about the walls surrounding this cell
                 scoreCurrentCell(maze, robot1, &nextCellDirection); //Give the current cell a score based on its accessible neighbours' scores
                 scoreMaze(&maze); //Update the scores for all the maze's cells
-                if (maze[robot1.yPos][robot1.xPos].visited == 0) //If this cell has notbeen visited before
+                if (maze[robot1.yPos][robot1.xPos].visited == false) //If this cell has notbeen visited before
                     cellsVisited++; 
-                maze[robot1.yPos][robot1.xPos].visited = 1; //The current cell has now been visited
+                maze[robot1.yPos][robot1.xPos].visited = true; //The current cell has now been visited
                 moveToAdjCell(&robot1, nextCellDirection); //Move the robot to the next cell
             }
 
