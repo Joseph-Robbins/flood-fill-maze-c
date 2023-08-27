@@ -61,9 +61,7 @@ void readCharMaze(FILE* filePointer, char* charMaze);
 void printCharMaze(char charMaze[33][66]);
 void scoreCharMaze(struct cell maze[16][16]);
 void printScoredMaze(char charMaze[33][66], struct cell maze[16][16]);
-void printVisitedMaze(char charMaze[33][66], struct cell maze[16][16]);
 void printScoredAndVisitedMazes(char charMaze[33][66], struct cell maze[16][16]);
-void showVisited(struct cell maze[16][16]);
 void initCells(char charMaze[33][66], struct cell* maze);
 
 
@@ -485,16 +483,6 @@ void printScoredMaze(char charMaze[33][66], struct cell maze[16][16])
     printf("\n\n");
 }
 
-void printVisitedMaze(char charMaze[33][66], struct cell maze[16][16])
-{
-    printf("\033[2J");
-    gotoxy(0, 0);
-    printCharMaze(charMaze);
-    showVisited(maze);
-    printf("\033[2J");
-    printf("\n\n");
-}
-
 void printScoredAndVisitedMazes(char charMaze[33][66], struct cell maze[16][16])
 {
     printf("\033[2J");
@@ -530,19 +518,6 @@ void printScoredAndVisitedMazes(char charMaze[33][66], struct cell maze[16][16])
    
     printf("\033[2J");
     printf("\n\n");
-}
-
-void showVisited(struct cell maze[16][16])
-{
-    for (int i = 0; i < 16; i++)
-    {
-        for (int j = 0; j < 16; j++)
-        {
-            gotoxy(2 + j * 4, 32 - i * 2);
-            if (maze[i][j].visited == 1)
-                printf(" x ");
-        }
-    }
 }
 
 /*void initCells(char charMaze[33][66], struct cell *maze)
