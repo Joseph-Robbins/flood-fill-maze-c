@@ -48,7 +48,7 @@ void moveToAdjCell(struct robot* robot, unsigned char direction);
 unsigned char setCoords(unsigned char xPos, unsigned char yPos);
 void scoreMaze(struct cell* maze);
 void scoreCurrentCell(struct cell* maze, struct robot robot, unsigned char* nextCellDirection);
-void initMaze(struct cell* maze[16][16]);
+void initMaze(struct cell* maze);
 
 char readSensors(char charMaze[33][66], struct robot robot);
 void moveForward(struct robot* robot);
@@ -70,7 +70,7 @@ void initCells(char charMaze[33][66], struct cell* maze);
 void main()
 {
     FILE* filePointer;
-    filePointer = fopen("F:\\University\\2\\MAGL\\Actual MAGL\\C Code for Maze\\Maze3.txt", "r");
+    filePointer = fopen("mazes/Maze3.txt", "r");
 
     if (filePointer == NULL)
     {
