@@ -69,6 +69,7 @@ void initCells(char charMaze[33][66], struct cell* maze);
 
 void main()
 {
+    // printf("\e[31mEllo m8!\r\n");
     FILE* filePointer;
     filePointer = fopen("mazes/Maze3.txt", "r");
 
@@ -508,6 +509,7 @@ void printScoredAndVisitedMazes(char charMaze[33][66], struct cell maze[16][16])
         {
             gotoxy(70 + j, i + 1);
             printf("%c", charMaze[i][j]);
+            // printf("\e[m");
         }
     }
 
@@ -517,7 +519,12 @@ void printScoredAndVisitedMazes(char charMaze[33][66], struct cell maze[16][16])
         {
             gotoxy(71 + j * 4, 32 - i * 2);
             if (maze[i][j].visited == 1)
-                printf(" x ");
+            {
+                if ((i == 0) && (j == 0))
+                    printf("\e[32m x \e[m");
+                else
+                    printf(" x ");
+            }
         }
     }
    
