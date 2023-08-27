@@ -87,6 +87,7 @@ void main()
         initMaze(&maze);
 
         //Print initial scored maze
+        printf("Size of maze: %d\r\n", sizeof(maze));
         printf("Initial Maze: ");
         readCharMaze(filePointer, &charMaze);
         printScoredMaze(charMaze, maze);
@@ -94,6 +95,7 @@ void main()
         for (int r = 0; r < 4; r++) //Set number of runs to 4
         {
             unsigned int cellsVisited = 0;
+            unsigned int stepsTaken = 0;
 
             struct robot robot1; //Initialise a robot to go around the maze
             robot1.orientation = north;
@@ -123,12 +125,13 @@ void main()
                     cellsVisited++; 
                 maze[robot1.yPos][robot1.xPos].visited = true; //The current cell has now been visited
                 moveToAdjCell(&robot1, nextCellDirection); //Move the robot to the next cell
+                stepsTaken++;
             }
 
             printf("Run %d: ", r + 1); //Print what run we are currently on
             printScoredAndVisitedMazes(charMaze, maze); //Print the scored maze and the maze with the robots path next to each other
+            printf("Total steps to solve: %d\r\n\n", stepsTaken);
         }
-        printf("Size of maze: %d", sizeof(maze));
     }           
 }
 
@@ -482,7 +485,7 @@ void printScoredMaze(char charMaze[33][66], struct cell maze[16][16])
     printCharMaze(charMaze);
     scoreCharMaze(maze);
     printf("\033[2J");
-    printf("\n\n");
+    printf("\r");
 }
 
 void printScoredAndVisitedMazes(char charMaze[33][66], struct cell maze[16][16])
@@ -521,7 +524,7 @@ void printScoredAndVisitedMazes(char charMaze[33][66], struct cell maze[16][16])
     }
    
     printf("\033[2J");
-    printf("\n\n");
+    printf("\r");
 }
 
 /*void initCells(char charMaze[33][66], struct cell *maze)
