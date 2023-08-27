@@ -512,8 +512,7 @@ void printScoredAndVisitedMazes(char charMaze[33][66], struct cell maze[16][16])
             {
                 if ((i == 0) && (j == 0)) // If the robot is at the starting point, print the x in green
                     printf("\e[32m x \e[m");
-                if (maze[i][j].score == 0) // If robot is in goal, print x in red
-                // if (((i == 7) && (j == 7)) || ((i == 7) && (j == 8)) || ((i == 8) && (j == 7)) || ((i == 8) && (j == 8))) // If robot is in goal, print x in red
+                else if (maze[i][j].score == 0) // If robot is in goal, print x in red
                     printf("\e[31m x \e[m");
                 else
                     printf(" x ");
