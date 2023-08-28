@@ -6,8 +6,10 @@ Example Output after 4 iterations:
 
 ![Solved Maze](SolvedMaze.png)
 
+---
+
 ## Building
-Just build main.c with a modern version of [GCC](https://gcc.gnu.org/)
+Just build main.c with a modern version of [GCC](https://gcc.gnu.org/).
 
 ### Windows
 Follow [these](https://code.visualstudio.com/docs/cpp/config-mingw#_installing-the-mingww64-toolchain) instructions to install gcc from mingw-64 via MSYS2.
@@ -31,3 +33,6 @@ After building, open a terminal (e.g. powershell or bash) in the folder where yo
                 OR
 
     .flood-fill-maze.c.o (Linux)
+
+## Maze Generation
+The provided mazes (in the `/mazes` directory) were generated using sevkeifrt's [maze-ify-ascii-v3.py](https://github.com/sevkeifert/text-utils/blob/master/maze-ify-ascii-v3.py) Python script, using the `/mazes/MazeTemplate.txt` provided in this repo as a template. So to randomly generate new mazes, run that script with the template provided. Currently only mazes based off the 16x16 template provided are supported.
