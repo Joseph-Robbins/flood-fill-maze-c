@@ -67,7 +67,7 @@ void initCells(char charMaze[33][66], struct cell* maze);
 void main()
 {
     FILE* filePointer;
-    filePointer = fopen("mazes/Maze3.txt", "r");
+    filePointer = fopen("mazes/Maze2.txt", "r");
 
     if (filePointer == NULL)
     {
@@ -79,6 +79,7 @@ void main()
         char charMaze[33][66]; //Create an array to hold all the characters from the maze text file
         struct cell maze[16][16]; //Create a 16x16 array to hold maze elements
         unsigned char nextCellDirection;
+        bool bestRouteFound = false;
 
         //Put zero into the finish cells
         //Fill the rest of the cells with the most optimistic distance in cells to the goal (i.e. pretend there are no walls until found otherwise.)
@@ -91,10 +92,15 @@ void main()
         readCharMaze(filePointer, &charMaze);
         printScoredMaze(charMaze, maze);
 
-        for (int r = 0; r < 4; r++) //Set number of runs to 4
+        unsigned int currentRun = 1;
+        unsigned int stepsTaken = 0;
+        unsigned int previousStepsTaken = 0;
+        // for (int r = 0; r < 4; r++) //Set number of runs to 4
+        while (!bestRouteFound)
         {
             unsigned int cellsVisited = 0;
-            unsigned int stepsTaken = 0;
+            previousStepsTaken = stepsTaken;
+            stepsTaken = 0;
 
             struct robot robot1; //Initialise a robot to go around the maze
             robot1.orientation = north;
@@ -127,9 +133,17 @@ void main()
                 stepsTaken++;
             }
 
-            printf("Run %d: ", r + 1); //Print what run we are currently on
+            if (stepsTaken == previousStepsTaken)
+            {
+                printf("Optimal route found!\r\n");
+                bestRouteFound = true;
+                break;
+            }
+
+            printf("Run %d: ", currentRun); //Print what run we are currently on
             printScoredAndVisitedMazes(charMaze, maze); //Print the scored maze and the maze with the robots path next to each other
             printf("Total steps to solve: %d\r\n\n", stepsTaken);
+            currentRun++;
         }
     }           
 }
