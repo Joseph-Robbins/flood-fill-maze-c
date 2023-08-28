@@ -491,9 +491,12 @@ void printScoredAndVisitedMazes(char charMaze[33][66], struct cell maze[16][16])
 {
     printf("\033[2J");
     gotoxy(0, 0);
+
+    /* Print the scored char maze */
     printCharMaze(charMaze);
     scoreCharMaze(maze);
 
+    /* Print the maze with the robot's path */
     gotoxy(0, 0);
     for (int i = 0; i < 33; i++)
     {
@@ -501,7 +504,6 @@ void printScoredAndVisitedMazes(char charMaze[33][66], struct cell maze[16][16])
         {
             gotoxy(70 + j, i + 1);
             printf("%c", charMaze[i][j]);
-            // printf("\e[m");
         }
     }
 
@@ -514,7 +516,7 @@ void printScoredAndVisitedMazes(char charMaze[33][66], struct cell maze[16][16])
             {
                 if ((i == 0) && (j == 0)) // If the robot is at the starting point, print the x in green
                     printf("\e[32m x \e[m");
-                else if (maze[i][j].score == 0) // If robot is in goal, print x in red
+                else if (maze[i][j].score == 0) // If the robot is in the goal, print the x in red
                     printf("\e[31m x \e[m");
                 else
                     printf(" x ");

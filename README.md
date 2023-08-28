@@ -1,6 +1,6 @@
 # flood-fill-maze-c - A flood fill maze solving algorithm in C
 
-This algorithm takes an ASCII maze in a text file as input, and simulates a robot solving it using a flood fill algorithm. Results are printed to the console which show the simulated robots path through the maze on each iteration of the flood fill algorithm. Also printed to the terminal on each iteration is a version of the maze with each cell scored according to how many steps away the robot thinks that cell is.
+This algorithm takes an ASCII maze in a text file as input, and simulates a robot solving it using a flood fill algorithm. Results are printed to the console which show the simulated robots path through the maze on each iteration of the flood fill algorithm. Also printed to the terminal on each iteration is a version of the maze with each cell scored according to how many steps away from the goal the robot thinks that cell is.
 
 Example Output after 4 iterations:
 
